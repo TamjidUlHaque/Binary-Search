@@ -1,0 +1,55 @@
+/*Intuition :-
+
+    1) Ei proshner moddhe atleast distance songkhok operation kortei hobe , Tai low 
+    er value distance . Ar at most 2*distance songkhok operation korlei opor side e 
+    pouchanu jabe , tai answer = 2*distance . Ekhon high value ta er cheye 1 kom dhora
+    hoise check korar jonno operation songkha komanu jay ki na .
+
+    2) Ekhane mid er value ta nirdesh kortese je koto gula operation korte hobe . 
+    That means mid = type1 + type2 operations . ==> Type1 = mid - Type2 operations .
+    Ekhon type2 er operation holo onno side e giye pouchano . Tar mane type2 
+    er value holo distance . Type1 = mid - distance .
+
+    3) Type1 er jonno shobcheye optimal holo operation gula ke duita kore Type2 operation
+    er moddhe rakha , Tahole health deduction kome jabe .
+    2 2 2 2 1 2 1 2 2 1 or this type of structure is always worse than 2 2 1 2 2 1 2 2 1 2 .
+    So our try will be to make type1+1 number of segments using type1 operations , jekhane 
+    every segment will be almost equal .
+
+    4) Ekhane x hishabe dhora hoyeche distance/noOfSegments er floor value ke ar y hishabe
+    dhora hoyeche division er ceil value ke . Dui vinno size er segment er jonno alada kore
+    decrease of health calculate kore rakha hoyeche forx and fory e .
+
+    5) Ekhon (distance%noOfSegments == remain) hole remain songkhok y size er segment toiri hobe . 
+    Tahole (noOfSegments-remain) songkhok x size er segment toiri hobe . Ei dui dhoroner operation
+    er summation holo oi mid value er jonno decrease of total health .
+
+    6) Pura operation er moddhe type1 operation gula amader health ke 1 kore barabe . Tai check
+    korbo je health+type1 er value ki strictly greater than decreaseOfHealth ki na . Jodi strictly
+    greater hoy tahole answer ke mid value diye update kore dibo and er cheye chuto answer pawar jonne
+    high ke mid theke 1 chuto value assign korbo . Jodi na hoy tahole low er value mid+1 e increase kore
+    same process repeat korbo . Jodi binarySearch kuno value khuje na pay tahole 2*distance e hobe answer. 
+    Karon 1 2 1 2 1 2 1 2 1 2 ei type er 2*d operation amader ke oi side e pouche dite pare .
+
+*/
+
+
+void giveMeMyGloryBack() {
+    ll health , distance ; cin >> health >> distance ; 
+    ll low = distance ; ll high = 2*distance-1 ; ll answer = 2*distance ;
+
+    while(low<=high){
+        ll mid = low + (high-low)/2 ;
+        ll type1 = mid-distance ; ll noOfSegments = type1+1 ;
+        ll x = distance/noOfSegments ; ll y = (distance+noOfSegments-1)/noOfSegments ;
+        ll forx = x*(x+1) / 2LL ; ll fory = y*(y+1)/2 ; 
+        ll decreaseOfHealth = (distance%noOfSegments)*fory + (noOfSegments-distance%noOfSegments)*forx ;
+        if(decreaseOfHealth < health+type1){
+            answer = mid ; 
+            high = mid-1 ;
+        }else{
+            low = mid+1 ;
+        }
+    }
+    cout << answer << endl ;
+}   
