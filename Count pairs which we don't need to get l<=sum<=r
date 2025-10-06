@@ -1,0 +1,35 @@
+/*Intuition :-
+    Proshner moddhe emon pair count korar jonno bola hoise jekhane {CurrSum = TotalSum - (a1+a2)} 
+    er value l theke boro ba shoman ar r theke chuto ba shoman hobe .
+
+    --> l <= CurrSum <= r 
+    --> l <= TotalSum - (a1+a2) <= r 
+    --> l - TotalSum <= TotalSum - (a1+a2) - TotalSum <= r - TotalSum 
+    --> l - TotalSum <= -(a1+a2) <= r - TotalSum [Multiply -1 on both side .]
+    --> TotalSum - l >= a1+a2 >= TotalSum - r ..................(i)
+
+    Ekhon problem er statement holo emon kotto gula pair ache jader summation er value
+    TotalSum-l theke Chuto ba shoman and TotalSum-r theke Boro ba shoman.
+    Duita value khuje ber korar problem removal er jonne ekta value ke constant dhore nibo.
+
+    Form equation (i),
+    --> TotalSum - l >= a1+a2 >= TotalSum - r .
+    --> TotalSum - l - a1 >= a2 >= TotalSum - r - a1 .
+
+    Ekhon amader kaaj onek sohoj , Emon a2 gula khuje ber korte hobe jader value
+    TotalSum - r - a1  theke boro ba shoman ar TotalSum - l - a1 theke chuto ba shoman . 
+    Er jonne C++ er inbuilt BinarySearch Function amra use korbo .
+*/
+
+void giveMeMyGloryBack() {
+    ll n , l , r ; cin >> n >> l >> r ; vll vec(n) ; ll ans = 0LL ;
+    tamjid(n) cin >> vec[i] ; nsort(vec) ; ll sum = Sum(vec) ;
+
+    tamjid(n-1){
+        ll low = lower_bound(vec.begin()+i+1,vec.end(),(sum-r-vec[i]))-vec.begin() ;
+        ll high = upper_bound(vec.begin()+i+1,vec.end(),(sum-l-vec[i]))-vec.begin() ;
+        ans += (high-low);
+    }
+
+    cout << ans << endl ;
+}
