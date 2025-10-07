@@ -1,0 +1,34 @@
+/*Intuition :-
+    Ekhane proshner moddhe bola hoise je ekta array dewa thakbe jar moddhe kichu
+    element thakbe . Ekhon ami ekta monmoto n size er permutation toiri kore 
+    vec[i] = vec[i] + perm[i] korbo . Highest koyta value similar korte parbo .
+
+    Solution er approach ta hoilo array teh currently joto gula duplicate value
+    ache oigular ashole kuno dorkar e nai . Karon duita same value vinno vinno
+    value er sathe add hoye same value dite parbe nah . 
+
+    Ekhon shobcheye mul je porjobekkhon ta holo array er proti ta element er sathe
+    n jug korbo . Ei value ta holo sorbuccho jeitar shoman array er onno value gula
+    amra banate parbo . Ar jehetu array ta sorted obosthay ache obossoi onno vec[i]
+    current index er vec[curIdx] theke boro and unique tai permutation theke unique
+    value add korar madhhome amra range er vitorer shobgula number similar banate parbo.
+
+*/
+
+void giveMeMyGloryBack() {
+
+    ll n ; cin >> n ; vll vec(n) ; tamjid(n) cin >> vec[i] ; ll ans = 0LL ;
+    
+    nsort(vec) ; vec.resize(unique(all(vec))-vec.begin()) ;
+
+    for(int i = 0 ; i < len(vec) ; i++){
+
+        ll idx = lower_bound(all(vec),vec[i]+n)-vec.begin() ;
+        
+        ll range = idx - i ; ans = max(range,ans) ;
+    
+    }
+
+    cout << ans << endl ;
+
+}
