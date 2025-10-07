@@ -1,0 +1,43 @@
+/*Intuition :-
+    Ekhane proshner moddhe bola hoise je sadi ekta cone icecream toiri korte gele
+    2 scope icecream er proyojon hoy . Ekhon duita icecream different bole count
+    kora hobe jokhon duita icecream er moddhe thaka duita flavour er moddhe atleast
+    ekta different hobe . 
+
+    Jemon chocolate , vanila , butterscotch , strawberry , coffee , pistachew , mango eigula
+    diye dui rokom vabe banate parbe ,
+    1) Duita scope e ekta same flavour er nibe . chocolate + chocolate .
+    2) Duita scope duita vinno flavour er nibe . strawberry + butterscotch.
+
+    Ekhon jodi n songkhok vinno vinno flavour thake tobe oi khan thek duita kore flavour
+    niye vinno rokom ice cream bananu jabe nCr(n,2) ti . 
+    Tar mane (n * (n-1) / 2) dhoroner vinno flavour er ice cream toiri kora jabe .
+
+    Ekhon amader kache proshne chaise je exactly n ta different type of iceCream toiri
+    korte hobe . Ei jonne amra jotobeshi shomvob vinno flavour add kore number kom rakhar
+    try korbo . Ekhon jodi dekhi vinno flavour add korar karone number of different ice-
+    cream amader required exact number ke cross kore jacche tokhon amader kache thaka 
+    flavour notun kore add korte thakbo . Ekhetre ekta notun flavour kebol ekta distinct
+    iceCream dite parbe . Jemon 1,1 --- 2,2 --- 3,3 .
+
+    Mone kori 9 ta toiri korte hobe tahole amader approach hobe 
+
+    1,2 -- 2,3 -- 3,4 -- 1,3 -- 1,4 -- 2,4 -- 1,1 -- 2,2 -- 3,3 . Ekhane 5 ta flavour
+    use korle amra required target cross kore jabo . Tai 4 ta e add korte hobe . Erpore
+    existed flavour er notun scope add korte hobe .
+
+*/
+
+void giveMeMyGloryBack() {
+    ll n ; cin >> n ; ll ans = -1 ;
+    ll low = 1 ; ll high = 2e9 ;
+    while(low<=high){
+        ll mid = low + (high-low)/2 ;
+        if(mid*(mid-1) <= n*2){
+            ans = mid ; low = mid+1 ;
+        }else{
+            high = mid-1 ;
+        }
+    }
+    cout << ans+(n-(ans*(ans-1)/2)) << endl ;
+}
