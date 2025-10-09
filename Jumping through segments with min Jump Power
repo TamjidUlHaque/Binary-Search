@@ -1,0 +1,64 @@
+/*Intuition :-
+    Proshner moddhe bola hoise je amader ke emon ekta value answer hishabe return
+    korbe jei value choose korle amra 0 theke shuru kore proti ta at max answer
+    size er jump er maddhome shobgula segment serially cover korte parbo . 
+    Formally , min value of k jei value diye shob gula segment visit kora possible .
+
+    Answer approach , Ei problem solve korar jonne binary Search use kora hoise 
+    pasha pashi segment er moddhe intersection newar intuition o use hoise .
+
+    Shobar prothome low er value 0 diye initialize kora hoise karon shobcheye kom
+    0 porjonto ashte parbe . Ar high er value right side e highest joto tuko jawa
+    lagte pare oita dhora hoise . Karon ei value nile shobgula segment e cover hoye
+    jay jehetu atmost k mane k er cheye chuto ongsho niye amra segment gular moddhe
+    visit korte partesi .
+
+    EKhon binary Searching er loop er vitore ekta left pointer ache jeita left e 
+    kun point porjonto reach kora jabe tar track rakhtese , ekivabe right pointer
+    right side e koto tuko cover kora jabe sheitar track rakhtese . Ar ekta boolean
+    function ache jeita check kortese ei mid value diye ki shob gula segment e visit
+    kora jacche ki na .
+
+    Ekhon amader kache jei mid ache oitar jonno condition satisfy hocche ki na ta
+    check korar jonno ekta loop chalabo . 
+    
+    Loop er moddhe prothome leftBoundary thik korbe sorbuccho koto tuko baam side
+    e ami jete parbo . Ekivabe rightBoundary thik korbe sorbuccho koto tuko daan
+    side e ami jete parbo . Ekhon ekta if check korbe joto tuko daan side e jete
+    parbo oitar maddhome ki amra currentSegment er left touch korte partesi ki nah ba
+    joto tuko baam e ashbo tar maddhome currentSegment er right point touch korte
+    partesi ki nah . Jodi na pari tahole break kore beriye giye low er value mid+1
+    kore dibo . Ar jodi cover korte pari tahole amader pointer er moddhe notun 
+    value assign korte thakbo and porer check er jonne ready korbo . 
+
+    Notun value assign korar way holo pointer duita oi segment er middle point er
+    kache thakar try korbe . Ei jonne lptr nibe leftBoundary,left[i] er moddhe maximum
+    ar rptr nibe rightBoundary,right[i] er moddhe minimum .
+
+*/
+
+void giveMeMyGloryBack() {
+    ll n ; cin >> n ; vll left(n) , right(n) ; ll ans = 0 ;
+    tamjid(n) cin >> left[i] >> right[i] ;
+    ll low = 0 ; ll high = Boro(right) ;
+    while(low<=high){
+        ll mid = ((low+high) >> 1) ;
+        ll lptr = 0 , rptr = 0 ; bool check = true ;
+        for(int i = 0 ; i < n ; i++){
+            ll leftBoundary = lptr - mid ;
+            ll rightBoundary = rptr + mid ;
+            if(leftBoundary>right[i] or rightBoundary<left[i]){
+                check = false ; break ;
+            }else{
+                lptr = max(leftBoundary,left[i]) ;
+                rptr = min(rightBoundary,right[i]) ;
+            }
+        }
+        if(check){
+            ans = mid ; high = mid-1 ;
+        }else{
+            low = mid+1 ;
+        }
+    }
+    cout << ans << endl ;
+}
