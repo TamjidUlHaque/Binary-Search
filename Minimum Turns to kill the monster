@@ -1,0 +1,27 @@
+/*Intuition :-
+  Proshner moddhe bola hoise je ekta h health er monster ke marar jonno amader kache n songkhok attack ache 
+  jader ke ekbar use korar pore cooldown hote shomoy lage coolDowns[i] second . 
+
+  Shorbonimno koto gula turn er maddhome monster ta ke kill kora jabe . Ekhane shobcheye important point ta holo
+  loop er vitor theke damage >= h hole break hoye ber hoye jawa . Er jonno ami 18 no testcase e wrong khaisi.
+*/
+
+void giveMeMyGloryBack() {
+    ll h , n ; cin >> h >> n ; vll attacks(n) , coolDowns(n) ;
+    tamjid(n) cin >> attacks[i] ; tamjid(n) cin >> coolDowns[i] ;
+    ll low = 1 ; ll high = 1e11 ; ll ans = 1LL ;
+    while(low<=high){
+        ll mid = low + (high-low)/2 ;
+        ll damage = 0LL ;
+        for(int i = 0 ; i < n ; i++){
+            damage += (((mid+coolDowns[i]-1)/coolDowns[i]))*attacks[i] ;
+            if(damage>=h) break ;
+        }
+        if(damage>=h){
+            ans = mid ; high = mid-1 ;
+        }else{
+            low = mid+1 ;
+        }
+    }
+    cout << ans << endl ;
+}
