@@ -1,0 +1,36 @@
+/*Intuition :- 
+    Ekhane proshner moddhe bola hoise je ekta n size er array dewa thakbe ar 
+    q songkhok query dewa thakbe . Proti ta query te left to right range dewa
+    thakbe . Amader bolte hobe oi range er vitore duita distinct element ache 
+    ki na .
+
+    Ekhane amra prothome jei shokol element er adjacent element er value different
+    tader ke ekta IdxArray te store kore nicchi . Tarpore oi IdxArray er upore binary 
+    search kortesi . Idx array teh left boundary er lowerbound search kortesi . Jodi
+    left boundary er lowerbound arr er size theke boro hoye jay tahole -1 , -1 print
+    korte hobe . Othoba jodi BinarySearch er maddhome prapto idx >= right hoy tahole
+    -1 , -1 print korte hobe . Karon amra right ke first element hishabe pele second
+    element right+1 e ache ja out of Bound hoye jay . 
+
+    Ei duita shorto mene cholle amra bolte pari je oi range er moddhe atleast duita
+    distinct integer ache .
+*/
+
+
+void giveMeMyGloryBack() {
+    ll n ; cin >> n ; vll vec(n),arr; tamjid(n) cin >> vec[i] ; 
+    tamjid(n-1){
+        if(vec[i]!=vec[i+1]) arr.pb(i) ;
+    }
+    ll query ; cin >> query ; 
+    while(query--){
+        ll left , right ; cin >> left >> right ; left-- , right-- ;
+        ll ptr = lower_bound(all(arr),left)-arr.begin() ;
+        if(ptr<len(arr) and arr[ptr] < right){
+            cout << arr[ptr]+1 << gap << arr[ptr]+2 << endl ;
+        }else{
+            cout << -1 << gap << -1 << endl ;
+        }
+    }
+    cout << endl ;
+}
