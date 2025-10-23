@@ -1,0 +1,49 @@
+/*Intuition :-
+    Ekhane proshner moddhe bola hoise je amader ke duita array a ar b dewa hoise .Amader ke
+    bolte hobe array a and b theke minimum koto gula pair delete korar maddhome emon obostha
+    pawa shomvob hobe jekhane for all i from 1 to k , a[i] < b[i] hobe. a ar b theke pair delete
+    korar age amra amader iccha moto array gula ke re-ordering o korte parbo .
+ 
+    Ekhane ekta findAnswer function ache jeita duita array er jonno min koto gula pair delete
+    korte hobe ta bole dey . First array er first element er value change hoy and er value 1 theke
+    m porjonto . Proti value er jonno joto gula pair delete korte hobe tar summation e ans . Ekta binary
+    Search er maddhome changing point ta select kora hoise , m er je value er jonno answer ar prev
+    answer er shoman ashtese na .
+ 
+    Ekhon M jehetu array er ekta e element M er kache power ache ei decision ta newar je array te
+    pair 1 ta kom thakbe na ager shoman e thakbe . 
+ 
+    Prothom je value ta m = 1 er jonno paisilam dhori eita initial value init . Tahole m er shokol 
+    value er jonno atleast init ta kore element delete korte hobe . Erpore jei point theke findanswer
+    er value init theke 1 bere jabe sekhan theke m porjonto proti ghorer jonno 1 add korte hobe.
+*/
+ 
+ll findAnswer(vll vec,vll arr){
+    nsort(vec) ; nsort(arr) ;
+    ll idx = 0 ; ll ptr = 0 ; ll cnt = 0 ;
+    while(idx < len(arr)){
+        if(arr[idx]>vec[ptr]){
+            idx++ ; ptr++ ;
+        }else{
+            idx++ ; cnt++ ;
+        }
+    }
+    return cnt ;
+}
+ 
+void giveMeMyGloryBack() {
+    ll n , m ; cin >> n >> m ; vll vec(n) , arr(n) ; vec[0] = 1 ;
+    for(int i = 1 ; i < n ; i++) cin >> vec[i] ;
+    for(int i = 0 ; i < n ; i++) cin >> arr[i] ;
+    ll curr = findAnswer(vec,arr) ; ll storeAns = 1 ;
+    ll low = 1 ; ll high = m ; 
+    while(low <= high){
+        ll mid = low + (high-low)/2 ; vec.front() = mid ;
+        if(findAnswer(vec,arr)==curr){
+            storeAns = mid ; low = mid+1; 
+        }else{
+            high = mid-1 ;
+        }
+    }
+    cout << (curr*m + (m-storeAns)) << endl ;
+}
